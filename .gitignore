@@ -15,9 +15,10 @@
 /dist
 /docs-dist
 /app-dist
-/packages/hooks/lib
-/packages/hooks/es
-/packages/hooks/dist
+/packages/app/dist
+/packages/vueuse/lib
+/packages/vueuse/es
+/packages/vueuse/dist
 /coverage
 
 # misc
