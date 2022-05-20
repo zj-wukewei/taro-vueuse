@@ -195,7 +195,79 @@
 	  }, hideToastAsync];
 	}
 
+	function useLoading(initialOption) {
+	  var showLoadingAsync = function showLoadingAsync() {
+	    var option = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+	      title: '加载中...',
+	      mask: false
+	    };
+	    return new Promise(function (resolve, reject) {
+	      try {
+	        if (!option && !initialOption) {
+	          console.warn('please provide a option');
+	          return reject(new Error('please provide a option'));
+	        } else {
+	          var options = Object.assign({}, initialOption || {}, option || {});
+
+	          if (!options.title) {
+	            reject({
+	              errMsg: 'showLoading: fail'
+	            });
+	          } else {
+	            taro.showLoading(_objectSpread(_objectSpread({}, options), {}, {
+	              success: resolve,
+	              fail: reject
+	            })).catch(reject);
+	          }
+	        }
+	      } catch (e) {
+	        reject(e);
+	      }
+	    });
+	  };
+
+	  var hideLoadingAsync = function hideLoadingAsync() {
+	    return new Promise(function (resolve, reject) {
+	      try {
+	        taro.hideLoading({
+	          success: resolve,
+	          fail: reject
+	        });
+	      } catch (e) {
+	        reject(e);
+	      }
+	    });
+	  };
+
+	  return [showLoadingAsync, hideLoadingAsync];
+	}
+
+	function useModal(initialOption) {
+	  var showModalAsync = function showModalAsync(option) {
+	    return new Promise(function (resolve, reject) {
+	      try {
+	        if (!option && !initialOption) {
+	          console.warn('please provide a option');
+	          return reject(new Error('please provide a option'));
+	        } else {
+	          var options = Object.assign({}, initialOption || {}, option || {});
+	          taro.showModal(_objectSpread(_objectSpread({}, options), {}, {
+	            success: resolve,
+	            fail: reject
+	          })).catch(reject);
+	        }
+	      } catch (e) {
+	        reject(e);
+	      }
+	    });
+	  };
+
+	  return [showModalAsync];
+	}
+
 	exports.useApp = useApp;
+	exports.useLoading = useLoading;
+	exports.useModal = useModal;
 	exports.useToast = useToast;
 
 	Object.defineProperty(exports, '__esModule', { value: true });

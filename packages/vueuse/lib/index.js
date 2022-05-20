@@ -11,6 +11,18 @@ Object.defineProperty(exports, "useApp", {
     return _useApp.default;
   }
 });
+Object.defineProperty(exports, "useLoading", {
+  enumerable: true,
+  get: function get() {
+    return _useLoading.default;
+  }
+});
+Object.defineProperty(exports, "useModal", {
+  enumerable: true,
+  get: function get() {
+    return _useModal.default;
+  }
+});
 Object.defineProperty(exports, "useToast", {
   enumerable: true,
   get: function get() {
@@ -21,3 +33,7 @@ Object.defineProperty(exports, "useToast", {
 var _useApp = _interopRequireDefault(require("./useApp"));
 
 var _useToast = _interopRequireDefault(require("./useToast"));
+
+var _useLoading = _interopRequireDefault(require("./useLoading"));
+
+var _useModal = _interopRequireDefault(require("./useModal"));

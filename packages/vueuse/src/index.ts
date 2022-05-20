@@ -1,4 +1,6 @@
 import useApp from './useApp';
 import useToast from './useToast';
+import useLoading from './useLoading';
+import useModal from './useModal';
 
-export { useToast, useApp };
+export { useApp, useToast, useLoading, useModal };

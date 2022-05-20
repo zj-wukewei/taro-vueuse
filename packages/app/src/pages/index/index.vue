@@ -12,7 +12,7 @@ export default {
   name: 'index',
   components: {},
   setup() {
-    const HooksList = ["useApp", "useToast"];
+    const HooksList = ["useApp", "useToast", "useLoading", "useModal"];
     const handleOnItemClick = (item) => {
       navigateTo({
         url: `/pages/${item}/index`
