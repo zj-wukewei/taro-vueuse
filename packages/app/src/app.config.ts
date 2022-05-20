@@ -4,7 +4,8 @@ export default defineAppConfig({
     'pages/useApp/index',
     'pages/useToast/index',
     'pages/useModal/index',
-    'pages/useLoading/index'
+    'pages/useLoading/index',
+    'pages/useThrottleFn/index'
   ],
   window: {
     backgroundTextStyle: 'light',

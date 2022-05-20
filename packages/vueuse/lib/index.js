@@ -23,6 +23,12 @@ Object.defineProperty(exports, "useModal", {
     return _useModal.default;
   }
 });
+Object.defineProperty(exports, "useThrottleFn", {
+  enumerable: true,
+  get: function get() {
+    return _useThrottleFn.default;
+  }
+});
 Object.defineProperty(exports, "useToast", {
   enumerable: true,
   get: function get() {
@@ -31,6 +37,8 @@ Object.defineProperty(exports, "useToast", {
 });
 
 var _useApp = _interopRequireDefault(require("./useApp"));
+
+var _useThrottleFn = _interopRequireDefault(require("./useThrottleFn"));
 
 var _useToast = _interopRequireDefault(require("./useToast"));
 

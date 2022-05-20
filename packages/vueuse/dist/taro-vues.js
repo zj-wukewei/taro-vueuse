@@ -115,6 +115,103 @@
 	    }
 	  });
 	};
+	/**
+	 * @internal
+	 */
+
+	function createFilterWrapper(filter, fn) {
+	  function wrapper() {
+	    var _this = this;
+
+	    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    filter(function () {
+	      return fn.apply(_this, args);
+	    }, {
+	      fn: fn,
+	      thisArg: this,
+	      args: args
+	    });
+	  }
+
+	  return wrapper;
+	}
+	/**
+	 * Create an EventFilter that throttle the events
+	 *
+	 * @param ms
+	 * @param [trailing=true]
+	 * @param [leading=true]
+	 */
+
+	function throttleFilter(ms) {
+	  var trailing = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+	  var leading = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+	  var lastExec = 0;
+	  var timer;
+	  var isLeading = true;
+
+	  var clear = function clear() {
+	    if (timer) {
+	      clearTimeout(timer);
+	      timer = undefined;
+	    }
+	  };
+
+	  var filter = function filter(invoke) {
+	    var duration = vue.unref(ms);
+	    var elapsed = Date.now() - lastExec;
+	    clear();
+
+	    if (duration <= 0) {
+	      lastExec = Date.now();
+	      return invoke();
+	    }
+
+	    if (elapsed > duration && (leading || !isLeading)) {
+	      lastExec = Date.now();
+	      invoke();
+	    } else if (trailing) {
+	      timer = setTimeout(function () {
+	        lastExec = Date.now();
+	        isLeading = true;
+	        clear();
+	        invoke();
+	      }, duration);
+	    }
+
+	    if (!leading && !timer) timer = setTimeout(function () {
+	      return isLeading = true;
+	    }, duration);
+	    isLeading = false;
+	  };
+
+	  return filter;
+	}
+
+	/**
+	 * Throttle execution of a function. Especially useful for rate limiting
+	 * execution of handlers on events like resize and scroll.
+	 *
+	 * @param   fn             A function to be executed after delay milliseconds. The `this` context and all arguments are passed through, as-is,
+	 *                                    to `callback` when the throttled-function is executed.
+	 * @param   ms             A zero-or-greater delay in milliseconds. For event callbacks, values around 100 or 250 (or even higher) are most useful.
+	 *
+	 * @param [trailing=true] if true, call fn again after the time is up
+	 *
+	 * @param [leading=true] if true, call fn on the leading edge of the ms timeout
+	 *
+	 * @return  A new, throttled, function.
+	 */
+
+	function useThrottleFn(fn) {
+	  var ms = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 200;
+	  var trailing = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+	  var leading = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+	  return createFilterWrapper(throttleFilter(ms, trailing, leading), fn);
+	}
 
 	function useToast(initialOption) {
 	  var showToastAsync = function showToastAsync(option) {
@@ -268,6 +365,7 @@
 	exports.useApp = useApp;
 	exports.useLoading = useLoading;
 	exports.useModal = useModal;
+	exports.useThrottleFn = useThrottleFn;
 	exports.useToast = useToast;
 
 	Object.defineProperty(exports, '__esModule', { value: true });
