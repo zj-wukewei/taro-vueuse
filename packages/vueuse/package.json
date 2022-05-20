@@ -1,0 +1,49 @@
+{
+  "name": "taro-vueuse",
+  "version": "1.0.0",
+  "description": "taro vue版本hooks",
+  "keywords": [
+    "taro-vueuse",
+    "taro",
+    "tarojs",
+    "vue3"
+  ],
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "dist/index.d.ts",
+  "unpkg": "dist/taro-vuese.js",
+  "jsdelivr": "dist/taro-vuese.js",
+  "sideEffects": false,
+  "author": "",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": "",
+  "homepage": "",
+  "scripts": {
+    "build": "yarn father-build",
+    "postinstall": "node -e \"try{require('./postinstall')}catch(e){}\""
+  },
+  "files": [
+    "dist",
+    "lib",
+    "es",
+    "package.json",
+    "README.md"
+  ],
+  "dependencies": {
+    "@babel/runtime": "^7.7.7"
+  },
+  "devDependencies": {
+    "@tarojs/taro": "3.4.3",
+    "vue": "^3.0.0"
+  },
+  "peerDependencies": {
+    "@tarojs/taro": "3.4.3",
+    "vue": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "license": "MIT"
+}
