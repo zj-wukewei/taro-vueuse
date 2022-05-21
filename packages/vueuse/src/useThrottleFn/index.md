@@ -34,6 +34,12 @@ const throttledFunction = useThrottleFn<T extends FunctionArgs>(fn: T, ms: Maybe
 | trailing   | 是否在延迟开始后调用函数  | `boolean`   | true
 | leading    | 是否在延迟开始前调用函数  | `boolean`   | true
 
+## 返回值说明
+
+| 返回值 | 说明           | 类型                                             |
+| ------ | -------------- | ------------------------------------------------ |
+| throttledFunction   | 调用函数 | `FunctionArgs` |
+
 ## 代码演示
 
 ```jsx | pure

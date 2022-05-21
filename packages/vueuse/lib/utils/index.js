@@ -6,9 +6,11 @@ Object.defineProperty(exports, "__esModule", {
 var _exportNames = {
   timeOutPromise: true,
   createFilterWrapper: true,
+  debounceFilter: true,
   throttleFilter: true
 };
 exports.createFilterWrapper = createFilterWrapper;
+exports.debounceFilter = debounceFilter;
 exports.throttleFilter = throttleFilter;
 exports.timeOutPromise = void 0;
 
@@ -64,6 +66,52 @@ function createFilterWrapper(filter, fn) {
   }
 
   return wrapper;
+}
+/**
+ * Create an EventFilter that debounce the events
+ *
+ * @param ms
+ * @param [maxWait=null]
+ */
+
+
+function debounceFilter(ms) {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var timer;
+  var maxTimer;
+
+  var filter = function filter(invoke) {
+    var duration = (0, _vue.unref)(ms);
+    var maxDuration = (0, _vue.unref)(options.maxWait);
+    if (timer) clearTimeout(timer);
+
+    if (duration <= 0 || maxDuration !== undefined && maxDuration <= 0) {
+      if (maxTimer) {
+        clearTimeout(maxTimer);
+        maxTimer = null;
+      }
+
+      return invoke();
+    } // Create the maxTimer. Clears the regular timer on invokation
+
+
+    if (maxDuration && !maxTimer) {
+      maxTimer = setTimeout(function () {
+        if (timer) clearTimeout(timer);
+        maxTimer = null;
+        invoke();
+      }, maxDuration);
+    } // Create the regular timer. Clears the max timer on invokation
+
+
+    timer = setTimeout(function () {
+      if (maxTimer) clearTimeout(maxTimer);
+      maxTimer = null;
+      invoke();
+    }, duration);
+  };
+
+  return filter;
 }
 /**
  * Create an EventFilter that throttle the events

@@ -5,6 +5,12 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+Object.defineProperty(exports, "refThrottled", {
+  enumerable: true,
+  get: function get() {
+    return _refThrottled.default;
+  }
+});
 Object.defineProperty(exports, "useApp", {
   enumerable: true,
   get: function get() {
@@ -37,6 +43,8 @@ Object.defineProperty(exports, "useToast", {
 });
 
 var _useApp = _interopRequireDefault(require("./useApp"));
+
+var _refThrottled = _interopRequireDefault(require("./refThrottled"));
 
 var _useThrottleFn = _interopRequireDefault(require("./useThrottleFn"));
 

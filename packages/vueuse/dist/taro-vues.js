@@ -213,6 +213,21 @@
 	  return createFilterWrapper(throttleFilter(ms, trailing, leading), fn);
 	}
 
+	function refThrottled(value) {
+	  var delay = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 200;
+	  var trailing = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+	  var leading = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+	  if (delay <= 0) return value;
+	  var throttled = vue.ref(value.value);
+	  var updater = useThrottleFn(function () {
+	    throttled.value = value.value;
+	  }, delay, trailing, leading);
+	  vue.watch(value, function () {
+	    return updater();
+	  });
+	  return throttled;
+	}
+
 	function useToast(initialOption) {
 	  var showToastAsync = function showToastAsync(option) {
 	    return new Promise(function (resolve, reject) {
@@ -362,6 +377,7 @@
 	  return [showModalAsync];
 	}
 
+	exports.refThrottled = refThrottled;
 	exports.useApp = useApp;
 	exports.useLoading = useLoading;
 	exports.useModal = useModal;

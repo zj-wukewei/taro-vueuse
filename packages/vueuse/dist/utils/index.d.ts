@@ -8,11 +8,25 @@ export interface FunctionWrapperOptions<Args extends any[] = any[], This = any> 
     thisArg: This;
 }
 export declare type EventFilter<Args extends any[] = any[], This = any> = (invoke: Fn, options: FunctionWrapperOptions<Args, This>) => void;
+export interface DebounceFilterOptions {
+    /**
+     * The maximum time allowed to be delayed before it's invoked.
+     * In milliseconds.
+     */
+    maxWait?: number;
+}
 export declare const timeOutPromise: TimeOutPromise;
 /**
  * @internal
  */
 export declare function createFilterWrapper<T extends FunctionArgs>(filter: EventFilter, fn: T): T;
+/**
+ * Create an EventFilter that debounce the events
+ *
+ * @param ms
+ * @param [maxWait=null]
+ */
+export declare function debounceFilter(ms: MaybeRef<number>, options?: DebounceFilterOptions): EventFilter<any[], any>;
 /**
  * Create an EventFilter that throttle the events
  *

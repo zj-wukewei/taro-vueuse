@@ -18,6 +18,14 @@ export type EventFilter<Args extends any[] = any[], This = any> = (
   options: FunctionWrapperOptions<Args, This>
 ) => void
 
+export interface DebounceFilterOptions {
+  /**
+   * The maximum time allowed to be delayed before it's invoked.
+   * In milliseconds.
+   */
+  maxWait?: number
+}
+
 
 export const timeOutPromise: TimeOutPromise = (time: number) => {
   return new Promise((resolve, reject) => {
@@ -41,6 +49,55 @@ export const timeOutPromise: TimeOutPromise = (time: number) => {
 
   return wrapper as any as T
 }
+
+
+/**
+ * Create an EventFilter that debounce the events
+ *
+ * @param ms
+ * @param [maxWait=null]
+ */
+ export function debounceFilter(ms: MaybeRef<number>, options: DebounceFilterOptions = {}) {
+  let timer: ReturnType<typeof setTimeout> | undefined
+  let maxTimer: ReturnType<typeof setTimeout> | undefined | null
+
+  const filter: EventFilter = (invoke) => {
+    const duration = unref(ms)
+    const maxDuration = unref(options.maxWait)
+
+    if (timer)
+      clearTimeout(timer)
+
+    if (duration <= 0 || (maxDuration !== undefined && maxDuration <= 0)) {
+      if (maxTimer) {
+        clearTimeout(maxTimer)
+        maxTimer = null
+      }
+      return invoke()
+    }
+
+    // Create the maxTimer. Clears the regular timer on invokation
+    if (maxDuration && !maxTimer) {
+      maxTimer = setTimeout(() => {
+        if (timer)
+          clearTimeout(timer)
+        maxTimer = null
+        invoke()
+      }, maxDuration)
+    }
+
+    // Create the regular timer. Clears the max timer on invokation
+    timer = setTimeout(() => {
+      if (maxTimer)
+        clearTimeout(maxTimer)
+      maxTimer = null
+      invoke()
+    }, duration)
+  }
+
+  return filter
+}
+
 
 
 /**
