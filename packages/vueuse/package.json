@@ -32,7 +32,8 @@
     "README.md"
   ],
   "dependencies": {
-    "@babel/runtime": "^7.7.7"
+    "@babel/runtime": "^7.7.7",
+    "compressorjs-global": "^1.1.2"
   },
   "devDependencies": {
     "@tarojs/taro": "3.4.3",
