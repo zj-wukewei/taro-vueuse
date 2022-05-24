@@ -1,20 +1,19 @@
 import { createApp } from 'vue'
 import { Button, Toast } from '@nutui/nutui-taro';
+import { useProvidingUserState, installUserStore } from './store';
 
 import './app.scss'
 
 const App = createApp({
   onShow (options) {},
+  // provide: () => {
+  //   useProvidingUserState();
+  // }
   // 入口组件不需要实现 render 方法，即使实现了也会被 taro 所覆盖
-})
-
-console.log("aaaaaa", App)
-App.config.globalProperties = {
-  framework: 'vue',
-  package: 'taro-vueuse',
-  basic: 'taro',
-}
+});
 
 App.use(Button).use(Toast)
+
+installUserStore(App);
 
 export default App

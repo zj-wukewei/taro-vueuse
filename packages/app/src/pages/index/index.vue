@@ -12,7 +12,7 @@ export default {
   name: 'index',
   components: {},
   setup() {
-    const HooksList = ["useApp", "useToast", "useLoading", "useModal", "useThrottleFn"];
+    const HooksList = ["useApp", "useToast", "useLoading", "useModal", "useThrottleFn", "createInjectionState", "useImage"];
     const handleOnItemClick = (item) => {
       navigateTo({
         url: `/pages/${item}/index`

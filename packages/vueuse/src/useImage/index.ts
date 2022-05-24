@@ -5,7 +5,7 @@ import Taro, {
   compressImage,
   chooseImage,
   chooseMessageFile,
-  getEnv
+  getEnv,
 } from '@tarojs/taro';
 import { ref } from 'vue';
 import type { Ref } from 'vue';
@@ -30,9 +30,7 @@ export type SaveImageToPhotosAlbumAction = (
   filePath: string,
 ) => Promise<TaroGeneral.CallbackResult>;
 
-export type GetImageInfoAction = (
-  src: string,
-) => Promise<getImageInfo.SuccessCallbackResult>;
+export type GetImageInfoAction = (src: string) => Promise<getImageInfo.SuccessCallbackResult>;
 
 export type ChooseMessageFileAction = (
   count: number,
@@ -45,9 +43,7 @@ export type CompressImageAction = (
   quality?: number,
 ) => Promise<compressImage.SuccessCallbackResult>;
 
-export type IFileInfo = Ref<
-Pick<chooseImage.SuccessCallbackResult, 'tempFilePaths' | 'tempFiles'>
->
+export type IFileInfo = Ref<Pick<chooseImage.SuccessCallbackResult, 'tempFilePaths' | 'tempFiles'>>;
 
 export interface IAction {
   choose: ChooseImageAction;
@@ -59,10 +55,10 @@ export interface IAction {
 }
 
 function useImage(options: ChooseImageOption): [IFileInfo, IAction] {
-  const fileInfoRef= ref<IFileInfo>({});
+  const fileInfoRef = ref<IFileInfo>({});
   const env = getEnv();
 
-  const chooseImageAsync : ChooseImageAction = ((option = {}) => {
+  const chooseImageAsync: ChooseImageAction = (option = {}) => {
     const { count, sizeType, sourceType } = options;
     const finalOptions = Object.assign(
       {},
@@ -104,38 +100,38 @@ function useImage(options: ChooseImageOption): [IFileInfo, IAction] {
         reject(e);
       }
     });
-  }, []);
+  };
 
   const saveImageToPhotosAlbumAsync: SaveImageToPhotosAlbumAction = (filePath) => {
-      return new Promise(async (resolve, reject) => {
-        if (!filePath) {
-          reject('you must provide filePath');
-        } else {
-          try {
-            if (env === ENV_TYPE.WEB) {
-              const result = await saveImageForH5(filePath);
-              if (result) {
-                resolve({
-                  errMsg: 'save success',
-                });
-              } else {
-                reject('save fail');
-              }
+    return new Promise(async (resolve, reject) => {
+      if (!filePath) {
+        reject('you must provide filePath');
+      } else {
+        try {
+          if (env === ENV_TYPE.WEB) {
+            const result = await saveImageForH5(filePath);
+            if (result) {
+              resolve({
+                errMsg: 'save success',
+              });
             } else {
-              saveImageToPhotosAlbum({
-                filePath,
-                success: resolve,
-                fail: reject,
-              }).catch(reject);
+              reject('save fail');
             }
-          } catch (e) {
-            reject(e);
+          } else {
+            saveImageToPhotosAlbum({
+              filePath,
+              success: resolve,
+              fail: reject,
+            }).catch(reject);
           }
+        } catch (e) {
+          reject(e);
         }
-      });
-    };
+      }
+    });
+  };
 
-  const getImageInfoAsync : GetImageInfoAction = (src) => {
+  const getImageInfoAsync: GetImageInfoAction = (src) => {
     return new Promise((resolve, reject) => {
       if (!src) {
         reject('please enter a valid path');
@@ -153,55 +149,53 @@ function useImage(options: ChooseImageOption): [IFileInfo, IAction] {
     });
   };
 
-  const chooseMessageFileAsync: ChooseMessageFileAction =
-    (count, type, extension) => {
-      return new Promise((resolve, reject) => {
-        if (!count || env !== ENV_TYPE.WEAPP) {
-          reject('you must provide count');
-        } else {
-          try {
-            const payload = Object.fromEntries(
-              [
-                ['type', type],
-                ['extension', extension],
-              ].filter((v) => v[1]) || [],
-            );
-            Taro.chooseMessageFile({
-              count,
-              ...payload,
-              success: resolve,
-              fail: reject,
-            });
-          } catch (e) {
-            reject(e);
-          }
-        }
-      });
-    };
-
-  const compressImageAsync: CompressImageAction = 
-    (src, quality) => {
-      return new Promise(async (resolve, reject) => {
-        if (!src) {
-          reject('you must provide src');
-        }
+  const chooseMessageFileAsync: ChooseMessageFileAction = (count, type, extension) => {
+    return new Promise((resolve, reject) => {
+      if (!count || env !== ENV_TYPE.WEAPP) {
+        reject('you must provide count');
+      } else {
         try {
-          if (env === ENV_TYPE.WEB) {
-            const blob = await downloadImage(src);
-            compressForH5(blob, quality).then(resolve, reject);
-          } else {
-            Taro.compressImage({
-              src,
-              ...(quality ? { quality } : {}),
-              success: resolve,
-              fail: reject,
-            }).catch(reject);
-          }
+          const payload = Object.fromEntries(
+            [
+              ['type', type],
+              ['extension', extension],
+            ].filter((v) => v[1]) || [],
+          );
+          Taro.chooseMessageFile({
+            count,
+            ...payload,
+            success: resolve,
+            fail: reject,
+          });
         } catch (e) {
           reject(e);
         }
-      });
-    };
+      }
+    });
+  };
+
+  const compressImageAsync: CompressImageAction = (src, quality) => {
+    return new Promise(async (resolve, reject) => {
+      if (!src) {
+        reject('you must provide src');
+      }
+      try {
+        if (env === ENV_TYPE.WEB) {
+          const blob = await downloadImage(src);
+          compressForH5(blob, quality).then(resolve, reject);
+        } else {
+          Taro.compressImage({
+            src,
+            ...(quality ? { quality } : {}),
+            success: resolve,
+            fail: reject,
+          }).catch(reject);
+        }
+      } catch (e) {
+        reject(e);
+      }
+    });
+  };
 
   return [
     fileInfoRef as IFileInfo,

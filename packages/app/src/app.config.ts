@@ -4,7 +4,9 @@ export default defineAppConfig({
     'pages/useApp/index',
     'pages/useToast/index',
     'pages/useModal/index',
+    'pages/createInjectionState/index',
     'pages/useLoading/index',
+    'pages/useImage/index',
     'pages/useThrottleFn/index'
   ],
   window: {
