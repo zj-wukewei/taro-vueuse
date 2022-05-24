@@ -4,6 +4,7 @@ export default defineAppConfig({
     'pages/useApp/index',
     'pages/useToast/index',
     'pages/useModal/index',
+    'pages/useEvent/index',
     'pages/createInjectionState/index',
     'pages/useLoading/index',
     'pages/useImage/index',

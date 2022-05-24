@@ -261,6 +261,68 @@
 	  return throttled;
 	}
 
+	var safeNamespace = ['__taro', 'at'];
+	function wrapperEvent(namespace, eventName) {
+	  return namespace ? "".concat(namespace, ".").concat(eventName) : eventName;
+	}
+
+	var createEventCenter = function createEventCenter() {
+	  return Taro__default['default'].eventCenter;
+	};
+
+	function useEvent(namespace) {
+	  var events = createEventCenter();
+
+	  var emitEvent = function emitEvent(eventName) {
+	    if (!eventName) {
+	      console.warn('eventName not provide');
+	      return;
+	    }
+
+	    var realEventName = wrapperEvent(namespace, eventName);
+
+	    for (var _len = arguments.length, params = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	      params[_key - 1] = arguments[_key];
+	    }
+
+	    events.trigger(realEventName, params);
+	  };
+
+	  var setListener = function setListener(eventName) {
+	    for (var _len2 = arguments.length, handlers = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+	      handlers[_key2 - 1] = arguments[_key2];
+	    }
+
+	    if (!eventName || safeNamespace.some(function (v) {
+	      return eventName.startsWith(v);
+	    })) {
+	      console.warn('eventName not valid. listen failed');
+	    } else if (!handlers.length) {
+	      console.warn('you mast provide one handler to listen. add failed');
+	    } else {
+	      var realEventName = wrapperEvent(namespace, eventName);
+	      vue.onMounted(function () {
+	        handlers.forEach(function (handler) {
+	          events.on(realEventName, handler);
+	        });
+	      });
+	      vue.onUnmounted(function () {
+	        events.off(realEventName);
+	      });
+	    }
+	  };
+
+	  var removeAllListener = function removeAllListener() {
+	    events.off();
+	  };
+
+	  return {
+	    emitEvent: emitEvent,
+	    setListener: setListener,
+	    removeAllListener: removeAllListener
+	  };
+	}
+
 	function useToast(initialOption) {
 	  var showToastAsync = function showToastAsync(option) {
 	    return new Promise(function (resolve, reject) {
@@ -2668,6 +2730,7 @@
 	exports.createInjectionState = createInjectionState;
 	exports.refThrottled = refThrottled;
 	exports.useApp = useApp;
+	exports.useEvent = useEvent;
 	exports.useImage = useImage;
 	exports.useLoading = useLoading;
 	exports.useModal = useModal;

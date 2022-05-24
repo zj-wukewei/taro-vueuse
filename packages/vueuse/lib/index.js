@@ -23,6 +23,12 @@ Object.defineProperty(exports, "useApp", {
     return _useApp.default;
   }
 });
+Object.defineProperty(exports, "useEvent", {
+  enumerable: true,
+  get: function get() {
+    return _useEvent.default;
+  }
+});
 Object.defineProperty(exports, "useImage", {
   enumerable: true,
   get: function get() {
@@ -61,6 +67,8 @@ var _createInjectionState = _interopRequireDefault(require("./createInjectionSta
 var _refThrottled = _interopRequireDefault(require("./refThrottled"));
 
 var _useThrottleFn = _interopRequireDefault(require("./useThrottleFn"));
+
+var _useEvent = _interopRequireDefault(require("./useEvent"));
 
 var _useToast = _interopRequireDefault(require("./useToast"));
 
