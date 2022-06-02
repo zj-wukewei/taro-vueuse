@@ -7,4 +7,5 @@ import useToast from './useToast';
 import useLoading from './useLoading';
 import useImage from './useImage';
 import useModal from './useModal';
-export { useApp, createInjectionState, refThrottled, useThrottleFn, useEvent, useToast, useLoading, useModal, useImage };
+import useRouter from './usRouter';
+export { useApp, createInjectionState, refThrottled, useThrottleFn, useEvent, useToast, useLoading, useModal, useImage, useRouter };

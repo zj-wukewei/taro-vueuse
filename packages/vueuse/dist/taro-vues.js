@@ -1,8 +1,8 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('vue'), require('@tarojs/taro')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'vue', '@tarojs/taro'], factory) :
-	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global['taro-vues'] = {}, global.vue, global.Taro));
-}(this, (function (exports, vue, Taro) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('vue'), require('@tarojs/taro'), require('querystring')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'vue', '@tarojs/taro', 'querystring'], factory) :
+	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global['taro-vues'] = {}, global.vue, global.Taro, global.querystring));
+}(this, (function (exports, vue, Taro, querystring) { 'use strict';
 
 	function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -2727,6 +2727,148 @@
 	  return [showModalAsync];
 	}
 
+	var _typeof_1 = createCommonjsModule(function (module) {
+	function _typeof(obj) {
+	  "@babel/helpers - typeof";
+
+	  return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+	    return typeof obj;
+	  } : function (obj) {
+	    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+	  }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(obj);
+	}
+
+	module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
+	});
+
+	var _typeof = /*@__PURE__*/getDefaultExportFromCjs(_typeof_1);
+
+	var typeOf = function typeOf(target, type) {
+	  return [type].flat().some(function (v) {
+	    return Object.prototype.toString.call(target) === "[object ".concat(v, "]");
+	  });
+	};
+
+	function stringfiyUrl(url, options) {
+	  var stringfiyUrl = url;
+
+	  if (options && _typeof(options) === 'object') {
+	    var hasQuery = stringfiyUrl.includes('?');
+	    stringfiyUrl += (hasQuery ? '&' : '?') + querystring.stringify(options);
+	  }
+
+	  return stringfiyUrl;
+	}
+
+	function useRouter() {
+	  var router = Taro.useRouter();
+
+	  var switchTabSync = function switchTabSync(url, options) {
+	    return new Promise(function (resolve, reject) {
+	      try {
+	        url = stringfiyUrl(url, options);
+	        Taro.switchTab({
+	          url: url,
+	          success: resolve,
+	          fail: reject
+	        }).catch(reject);
+	      } catch (e) {
+	        reject(e);
+	      }
+	    });
+	  };
+
+	  var relaunchSync = function relaunchSync(url, options) {
+	    return new Promise(function (resolve, reject) {
+	      try {
+	        url = stringfiyUrl(url, options);
+	        Taro.reLaunch({
+	          url: url,
+	          success: resolve,
+	          fail: reject
+	        }).catch(reject);
+	      } catch (e) {
+	        reject(e);
+	      }
+	    });
+	  };
+
+	  var redirectToSync = function redirectToSync(url, options) {
+	    return new Promise(function (resolve, reject) {
+	      try {
+	        url = stringfiyUrl(url, options);
+	        Taro.redirectTo({
+	          url: url,
+	          success: resolve,
+	          fail: reject
+	        }).catch(reject);
+	      } catch (e) {
+	        reject(e);
+	      }
+	    });
+	  };
+
+	  var navigateToSync = function navigateToSync(urlOrMark, options) {
+	    return new Promise(function (resolve, reject) {
+	      try {
+	        var _ref = options || {},
+	            appId = _ref.appId; // if appid exist, use navigateToMiniprogram
+
+
+	        if (appId && urlOrMark) {
+	          Taro.navigateToMiniProgram(_objectSpread(_objectSpread({}, options), {}, {
+	            appId: appId,
+	            success: resolve,
+	            fail: reject
+	          })).catch(reject);
+	        } else if (typeOf(urlOrMark, 'String')) {
+	          urlOrMark = stringfiyUrl(urlOrMark, options);
+	          Taro.navigateTo({
+	            url: urlOrMark,
+	            success: resolve,
+	            fail: reject
+	          }).catch(reject);
+	        }
+	      } catch (e) {
+	        reject(e);
+	      }
+	    });
+	  };
+
+	  var navigateBackSync = function navigateBackSync(deltaOrMark, extraData) {
+	    return new Promise(function (resolve, reject) {
+	      try {
+	        // if deltaOrMark is boolean, use navigateBackMiniprogram
+	        if (typeOf(deltaOrMark, 'Boolean') && deltaOrMark) {
+	          Taro.navigateBackMiniProgram(_objectSpread(_objectSpread({}, extraData ? {
+	            extraData: extraData
+	          } : {}), {}, {
+	            success: resolve,
+	            fail: reject
+	          })).catch(reject);
+	        } else {
+	          Taro.navigateBack(_objectSpread(_objectSpread({}, deltaOrMark ? {
+	            deltaOrMark: deltaOrMark
+	          } : {}), {}, {
+	            success: resolve,
+	            fail: reject
+	          })).catch(reject);
+	        }
+	      } catch (e) {
+	        reject(e);
+	      }
+	    });
+	  };
+
+	  return [router, {
+	    switchTab: switchTabSync,
+	    relaunch: relaunchSync,
+	    redirectTo: redirectToSync,
+	    navigateTo: navigateToSync,
+	    navigateBack: navigateBackSync
+	  }];
+	}
+
 	exports.createInjectionState = createInjectionState;
 	exports.refThrottled = refThrottled;
 	exports.useApp = useApp;
@@ -2734,6 +2876,7 @@
 	exports.useImage = useImage;
 	exports.useLoading = useLoading;
 	exports.useModal = useModal;
+	exports.useRouter = useRouter;
 	exports.useThrottleFn = useThrottleFn;
 	exports.useToast = useToast;
 

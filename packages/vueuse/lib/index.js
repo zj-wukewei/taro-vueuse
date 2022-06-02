@@ -47,6 +47,12 @@ Object.defineProperty(exports, "useModal", {
     return _useModal.default;
   }
 });
+Object.defineProperty(exports, "useRouter", {
+  enumerable: true,
+  get: function get() {
+    return _usRouter.default;
+  }
+});
 Object.defineProperty(exports, "useThrottleFn", {
   enumerable: true,
   get: function get() {
@@ -77,3 +83,5 @@ var _useLoading = _interopRequireDefault(require("./useLoading"));
 var _useImage = _interopRequireDefault(require("./useImage"));
 
 var _useModal = _interopRequireDefault(require("./useModal"));
+
+var _usRouter = _interopRequireDefault(require("./usRouter"));

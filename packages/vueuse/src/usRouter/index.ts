@@ -9,7 +9,7 @@ import {
   navigateBackMiniProgram,
 } from '@tarojs/taro';
 import { stringify } from 'querystring';
-
+import { typeOf } from '../utils/tool';
 import type { TRouteInfo, TRecord } from '../type';
 
 export type NavigateBackSync = (

@@ -7,16 +7,16 @@
 </template>
 
 <script>
+import { useRouter } from 'taro-vueuse';
 import { navigateTo } from "@tarojs/taro";
 export default {
   name: 'index',
   components: {},
   setup() {
+    const [_, { navigateTo }] = useRouter();
     const HooksList = ["useApp", "useToast", "useLoading", "useModal", "useThrottleFn", "createInjectionState", "useImage", "useEvent"];
     const handleOnItemClick = (item) => {
-      navigateTo({
-        url: `/pages/${item}/index`
-      });
+      navigateTo(`/pages/${item}/index`);
     }
     return {
       HooksList,
