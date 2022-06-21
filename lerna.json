@@ -23,5 +23,5 @@
   ],
   "version": "0.0.1",
   "tagVersionPrefix": "taro-vueuse",
-  "npmClient": "yarn"
+  "npmClient": "npm"
 }
