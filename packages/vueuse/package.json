@@ -1,6 +1,6 @@
 {
   "name": "taro-vueuse",
-  "version": "0.0.2",
+  "version": "0.0.0",
   "description": "taro vue版本hooks",
   "keywords": [
     "taro-vueuse",
@@ -48,5 +48,5 @@
     "node": ">=12.0.0"
   },
   "license": "MIT",
-  "gitHead": "f527baaa7f2fa1bd87e3d4f430c05fc0cd7033b3"
+  "gitHead": "569c1b8d25968273636a8b15b32e1bb41eb59e92"
 }
