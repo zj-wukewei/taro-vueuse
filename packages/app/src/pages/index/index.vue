@@ -14,7 +14,7 @@ export default {
   components: {},
   setup() {
     const [_, { navigateTo }] = useRouter();
-    const HooksList = ["useApp", "useToast", "useLoading", "useModal", "useThrottleFn", "createInjectionState", "useImage", "useEvent"];
+    const HooksList = ["useApp", "useToast", "useLoading", "useModal", "useThrottleFn", "createInjectionState", "useImage", "useEvent", "useStorage"];
     const handleOnItemClick = (item) => {
       navigateTo(`/pages/${item}/index`);
     }

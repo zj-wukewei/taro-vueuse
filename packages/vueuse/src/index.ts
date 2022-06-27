@@ -9,5 +9,6 @@ import useImage from './useImage';
 import useModal from './useModal';
 import useRouter from './usRouter';
 import useScanCode from './useScanCode';
+import useStorage from './useStorage';
 
-export { useApp, createInjectionState, refThrottled, useScanCode, useThrottleFn, useEvent, useToast, useLoading, useModal, useImage, useRouter };
+export { useApp, createInjectionState, refThrottled, useScanCode, useThrottleFn, useEvent, useToast, useLoading, useModal, useImage, useRouter, useStorage };

@@ -8,7 +8,8 @@ export default defineAppConfig({
     'pages/createInjectionState/index',
     'pages/useLoading/index',
     'pages/useImage/index',
-    'pages/useThrottleFn/index'
+    'pages/useThrottleFn/index',
+    'pages/useStorage/index'
   ],
   window: {
     backgroundTextStyle: 'light',

@@ -22,6 +22,6 @@
     "**/dist/*"
   ],
   "version": "0.0.1",
-  "tagVersionPrefix": "taro-vueuse",
+  "tagVersionPrefix": "taro-vueuse-v",
   "npmClient": "yarn"
 }

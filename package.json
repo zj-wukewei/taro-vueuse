@@ -26,8 +26,15 @@
     "lerna:publish:minor": "lerna publish minor --no-private",
     "lerna:publish:patch": "lerna publish patch --no-private"
   },
+  "main": "lib/index.js",
   "module": "es/index.js",
-  "typings": "es/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "unpkg": "dist/taro-vueuse.min.js",
+  "files": [
+    "dist",
+    "es",
+    "lib"
+  ],
   "dependencies": {
     "react": "^16.12.0 || ^17.0.0"
   },
