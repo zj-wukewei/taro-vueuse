@@ -1,10 +1,14 @@
 import { createApp } from 'vue'
 import { Button, Toast } from '@nutui/nutui-taro';
+import { useUpdateManager } from 'taro-vueuse';
 import { useProvidingUserState, installUserStore } from './store';
 
 import './app.scss'
 
 const App = createApp({
+  onLaunch(options) {
+    useUpdateManager({});
+  },
   onShow (options) {},
   // provide: () => {
   //   useProvidingUserState();

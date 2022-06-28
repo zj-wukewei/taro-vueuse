@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import { getStorage } from '@tarojs/taro';
 import { useStorage } from 'taro-vueuse';
 export default {
   name: 'use-toast',
@@ -22,6 +23,12 @@ export default {
     const handleSetClick = () => {
       set("name", "AAAA").then(data => console.log("handleSetClick", data));;
     };
+
+    getStorage({
+      key: 'ccc',
+      success: (data) => console.log("success", data),
+      fail: (err) => console.log("fail", err)
+    })
     return {
       handleClick,
       handleSetClick,
