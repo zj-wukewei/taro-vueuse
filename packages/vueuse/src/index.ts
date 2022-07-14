@@ -11,6 +11,7 @@ import useRouter from './usRouter';
 import useScanCode from './useScanCode';
 import useStorage from './useStorage';
 import useUpdateManager from './useUpdateManager';
+import useLogin from './useLogin';
 
 export {
   useApp,
@@ -26,4 +27,5 @@ export {
   useRouter,
   useStorage,
   useUpdateManager,
+  useLogin
 };
