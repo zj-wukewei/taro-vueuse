@@ -15,7 +15,7 @@ function usePromise(
           success: resolve,
           fail: reject,
           complete: console.log,
-        }).catch(reject);
+        });
       }
       console.warn('please input a valid method name');
     } catch (e) {
