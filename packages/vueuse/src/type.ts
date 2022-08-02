@@ -13,3 +13,13 @@ export type TGeneralCallback<T = TaroGeneral.CallbackResult, R = void> = (
 export type TRouteInfo = RouterInfo<Partial<Record<string, string>>>;
 
 export type TPartialRouteInfo<R = {}> = TRouteInfo | R;
+
+export type { Options, Service } from './useRequest/core/types';
+
+export type {
+  DataType,
+  LoadMoreBaseOptions,
+  LoadMoreService,
+} from './useRequest/useLoadMore';
+
+export type { PaginationOptions } from './useRequest/usePagination';

@@ -13,6 +13,14 @@ import useStorage from './useStorage';
 import useUpdateManager from './useUpdateManager';
 import useLogin from './useLogin';
 
+import { setGlobalOptions } from './useRequest/core/config';
+import { clearCache } from './useRequest/core/utils/cache';
+
+import useLoadMore from './useRequest/useLoadMore';
+import usePagination from './useRequest/usePagination';
+import useRequest from './useRequest/useRequest';
+import useRequestProvider from './useRequest/useRequestProvider';
+
 export {
   useApp,
   createInjectionState,
@@ -27,5 +35,11 @@ export {
   useRouter,
   useStorage,
   useUpdateManager,
-  useLogin
+  useLogin,
+  setGlobalOptions,
+  clearCache,
+  useLoadMore,
+  usePagination,
+  useRequest,
+  useRequestProvider
 };

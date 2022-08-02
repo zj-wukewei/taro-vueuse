@@ -9,7 +9,8 @@ export default defineAppConfig({
     'pages/useLoading/index',
     'pages/useImage/index',
     'pages/useThrottleFn/index',
-    'pages/useStorage/index'
+    'pages/useStorage/index',
+    'pages/useRequest/index'
   ],
   window: {
     backgroundTextStyle: 'light',
