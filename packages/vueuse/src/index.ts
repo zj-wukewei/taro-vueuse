@@ -12,6 +12,8 @@ import useScanCode from './useScanCode';
 import useStorage from './useStorage';
 import useUpdateManager from './useUpdateManager';
 import useLogin from './useLogin';
+import useDebounceFn from './useDebounceFn';
+import refDebounce from './refDebounce';
 
 import { setGlobalOptions } from './useRequest/core/config';
 import { clearCache } from './useRequest/core/utils/cache';
@@ -25,8 +27,10 @@ export {
   useApp,
   createInjectionState,
   refThrottled,
-  useScanCode,
   useThrottleFn,
+  useDebounceFn,
+  refDebounce,
+  useScanCode,
   useEvent,
   useToast,
   useLoading,
