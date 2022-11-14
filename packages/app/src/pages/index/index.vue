@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { useRouter } from 'taro-vueuse';
+import { useRouter } from '@slan-health/taro-vueuse';
 import { navigateTo } from "@tarojs/taro";
 export default {
   name: 'index',

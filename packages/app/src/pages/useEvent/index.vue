@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { useEvent } from 'taro-vueuse';
+import { useEvent } from '@slan-health/taro-vueuse';
 export default {
   name: 'use-event',
   components: {},

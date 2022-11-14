@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { useRequest, useRouter } from 'taro-vueuse';
+import { useRequest, useRouter } from '@slan-health/taro-vueuse';
 
 export default {
   name: 'Index',

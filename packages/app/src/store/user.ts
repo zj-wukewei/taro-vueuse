@@ -1,5 +1,5 @@
 import { ref } from 'vue';
-import { createInjectionState } from 'taro-vueuse';
+import { createInjectionState } from '@slan-health/taro-vueuse';
 
 interface User {
   name: string;

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { useToast } from 'taro-vueuse';
+import { useToast } from '@slan-health/taro-vueuse';
 export default {
   name: 'use-toast',
   components: {},

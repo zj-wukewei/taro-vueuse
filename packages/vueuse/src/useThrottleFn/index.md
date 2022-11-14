@@ -44,7 +44,7 @@ const throttledFunction = useThrottleFn<T extends FunctionArgs>(fn: T, ms: Maybe
 
 ```jsx | pure
 <script>
-import { useThrottleFn } from 'taro-vueuse';
+import { useThrottleFn } from '@slan-health/taro-vueuse';
 export default {
   name: 'use-ThrottleFn',
   components: {},

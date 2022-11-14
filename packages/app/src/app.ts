@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import { Button, Toast } from '@nutui/nutui-taro';
-import { useUpdateManager } from 'taro-vueuse';
+import { useUpdateManager } from '@slan-health/taro-vueuse';
 import { useProvidingUserState, installUserStore } from './store';
 
 import './app.scss'

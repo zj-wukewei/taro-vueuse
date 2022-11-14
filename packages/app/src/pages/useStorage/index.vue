@@ -9,7 +9,7 @@
 
 <script>
 import { getStorage } from '@tarojs/taro';
-import { useStorage } from 'taro-vueuse';
+import { useStorage } from '@slan-health/taro-vueuse';
 export default {
   name: 'use-toast',
   components: {},

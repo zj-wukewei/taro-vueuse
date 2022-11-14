@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { useThrottleFn } from 'taro-vueuse';
+import { useThrottleFn } from '@slan-health/taro-vueuse';
 export default {
   name: 'use-ThrottleFn',
   components: {},

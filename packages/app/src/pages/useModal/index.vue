@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { useModal } from 'taro-vueuse';
+import { useModal } from '@slan-health/taro-vueuse';
 export default {
   name: 'use-modal',
   components: {},

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { useLoading } from 'taro-vueuse';
+import { useLoading } from '@slan-health/taro-vueuse';
 export default {
   name: 'use-loading',
   components: {},

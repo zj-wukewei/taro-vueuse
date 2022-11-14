@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { useImage } from 'taro-vueuse';
+import { useImage } from '@slan-health/taro-vueuse';
 export default {
   name: 'use-app',
   components: {},

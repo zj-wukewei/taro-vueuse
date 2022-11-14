@@ -13,7 +13,7 @@
     "docs:deploy": "gh-pages -d docs-dist",
     "app:dev": "cd ./packages/app && npm run dev:weapp",
     "app:dev:h5": "cd ./packages/app && npm run dev:h5",
-    "build": "lerna run build --scope=taro-vueuse --stream",
+    "build": "lerna run build --scope=@slan-health/taro-vueuse --stream",
     "deploy": "npm run docs:build && npm run docs:deploy",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
     "test": "umi-test",

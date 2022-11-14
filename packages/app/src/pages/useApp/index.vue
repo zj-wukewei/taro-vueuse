@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { useApp } from 'taro-vueuse';
+import { useApp } from '@slan-health/taro-vueuse';
 import { getCurrentInstance } from '@tarojs/taro';
 export default {
   name: 'use-app',

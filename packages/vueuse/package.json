@@ -1,5 +1,5 @@
 {
-  "name": "taro-vueuse",
+  "name": "@slan-health/taro-vueuse",
   "version": "0.0.2",
   "description": "taro vue版本hooks",
   "keywords": [
