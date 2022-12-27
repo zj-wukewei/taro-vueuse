@@ -9,7 +9,7 @@ export type ICheckSessionAction = () => Promise<TaroGeneral.CallbackResult>;
 export interface IAction {
   checkSessionSync: ICheckSessionAction,
   loginSync: ILogin,
-  getPhoneNumer: (e: any) => Promise<{
+  getPhoneNumber: (e: any) => Promise<{
     code: string | undefined;
     encryptedData: string;
     iv: string;
@@ -23,7 +23,7 @@ function useLogin(): IAction {
 
   const checkSessionSync: ICheckSessionAction = () => {
     return new Promise((resolve, reject) => {
-      if (env === ENV_TYPE.WEB) { 
+      if (env === ENV_TYPE.WEAPP) { 
         checkSession({
           success: resolve,
           fail: reject,
@@ -36,7 +36,7 @@ function useLogin(): IAction {
 
   const loginSync: ILogin = (needCheck) => {
     return new Promise((resolve, reject) => {
-      if (env === ENV_TYPE.WEB) { 
+      if (env === ENV_TYPE.WEAPP) { 
          const loginAction = () => {
             login({
               success: (res) => resolve(res.code),
@@ -64,7 +64,7 @@ function useLogin(): IAction {
     });
   }
 
-  const getPhoneNumer = (e: any) => {
+  const getPhoneNumber = (e: any) => {
     if (!e.detail.encryptedData) return Promise.reject({ errMsg: 'login:fail' });
     const info = e.detail;
     return loginSync(false).then(code => Promise.resolve({
@@ -78,7 +78,7 @@ function useLogin(): IAction {
   return {
     checkSessionSync,
     loginSync,
-    getPhoneNumer
+    getPhoneNumber
   }
 
 }
