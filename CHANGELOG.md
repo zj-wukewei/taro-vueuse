@@ -3,18 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.0.6](https://github.com/zj-wukewei/taro-vueuse/compare/taro-vueuse-v0.0.4...taro-vueuse-v0.0.6) (2022-12-27)
-
-
 ### Bug Fixes
 
 * useLogin环境判断出错 ([483ae03](https://github.com/zj-wukewei/taro-vueuse/commit/483ae03fb50fb8298a7877982f2c1d3d182296c5))
 
 
-
-
-
-## [0.0.5](https://github.com/zj-wukewei/taro-vueuse/compare/taro-vueuse-v0.0.4...taro-vueuse-v0.0.5) (2022-12-27)
 
 
 ### Bug Fixes

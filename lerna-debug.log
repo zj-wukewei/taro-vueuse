@@ -1,13 +1,5 @@
-15 error Error: Command failed: git remote update
-15 error fatal: unable to access 'https://github.com/zj-wukewei/taro-vueuse.git/': Failed to connect to github.com port 443: Operation timed out
-15 error error: Could not fetch origin
-15 error
-15 error Fetching origin
-15 error Fetching gitlab
-15 error
-15 error     at makeError (/Users/wukewei/Documents/outproject/vongi/taro-vueuse/node_modules/execa/index.js:174:9)
-15 error     at Function.module.exports.sync (/Users/wukewei/Documents/outproject/vongi/taro-vueuse/node_modules/execa/index.js:338:15)
-15 error     at Object.execSync (/Users/wukewei/Documents/outproject/vongi/taro-vueuse/node_modules/@lerna/child-process/index.js:26:16)
-15 error     at updateRemote (/Users/wukewei/Documents/outproject/vongi/taro-vueuse/node_modules/@lerna/version/lib/is-behind-upstream.js:26:16)
-15 error     at isBehindUpstream (/Users/wukewei/Documents/outproject/vongi/taro-vueuse/node_modules/@lerna/version/lib/is-behind-upstream.js:11:3)
-15 error     at VersionCommand.initialize (/Users/wukewei/Documents/outproject/vongi/taro-vueuse/node_modules/@lerna/version/index.js:154:9)
+55 error Error: Command failed: git push --follow-tags --no-verify --atomic origin master
+55 error fatal: unable to access 'https://github.com/zj-wukewei/taro-vueuse.git/': LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443
+55 error
+55 error     at makeError (/Users/wukewei/Documents/outproject/vongi/taro-vueuse/node_modules/execa/index.js:174:9)
+55 error     at /Users/wukewei/Documents/outproject/vongi/taro-vueuse/node_modules/execa/index.js:278:16
