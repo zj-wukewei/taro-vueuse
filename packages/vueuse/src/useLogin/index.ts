@@ -1,5 +1,3 @@
-import { ref } from 'vue';
-import type { Ref } from 'vue';
 import { login, checkSession, getEnv } from '@tarojs/taro';
 
 import { ENV_TYPE } from '../constant';
