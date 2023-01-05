@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.6](https://github.com/zj-wukewei/taro-vueuse/compare/taro-vueuse-v0.0.5...taro-vueuse-v0.0.6) (2023-01-05)
+
+
+### Bug Fixes
+
+* useRequest的data变成ref ([185205c](https://github.com/zj-wukewei/taro-vueuse/commit/185205c39e3b255797b5e68cde6ec8536296da94))
+* useRequest的data变成ref ([d12bbb0](https://github.com/zj-wukewei/taro-vueuse/commit/d12bbb0db48fab7836f086c9f8fc75ac27130fda))
+* useRequest的data变成ref ([cf67bfe](https://github.com/zj-wukewei/taro-vueuse/commit/cf67bfe563a67cea7b9260e315022f0e0f9e3c48))
+
+
+
+
+
 
 ### Bug Fixes
 
