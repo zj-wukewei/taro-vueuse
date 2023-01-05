@@ -43,7 +43,7 @@ const createQuery = <R, P extends unknown[]>(
   const { initialData, onSuccess, onError, onBefore, onAfter } = config;
 
   const loading = ref(initialState?.loading ?? false);
-  const data = shallowRef(initialState?.data ?? initialData) as Ref<R>;
+  const data = ref(initialState?.data ?? initialData) as Ref<R>;
   const error = shallowRef(initialState?.error);
   const params = ref(initialState?.params) as Ref<P>;
   const plugins = ref([]) as Query<R, P>['plugins'];
