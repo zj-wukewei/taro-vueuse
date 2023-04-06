@@ -1,4 +1,5 @@
-import { login, checkSession, getEnv } from '@tarojs/taro';
+import { login, checkSession, getEnv, useDidShow } from '@tarojs/taro';
+import { ref } from "vue";
 
 import { ENV_TYPE } from '../constant';
 
@@ -18,6 +19,7 @@ export interface IAction {
 
 function useLogin(): IAction {
   const env = getEnv();
+  const code = ref();
 
   const checkSessionSync: ICheckSessionAction = () => {
     return new Promise((resolve, reject) => {
@@ -32,12 +34,19 @@ function useLogin(): IAction {
     });
   }
 
+  useDidShow(() => {
+    loginSync(false);
+  })
+
   const loginSync: ILogin = (needCheck) => {
     return new Promise((resolve, reject) => {
       if (env === ENV_TYPE.WEAPP) { 
          const loginAction = () => {
             login({
-              success: (res) => resolve(res.code),
+              success: (res) => {
+                code.value = res.code;
+                resolve(res.code);
+              },
               fail: reject,
             }).catch(reject);
           };
@@ -46,7 +55,11 @@ function useLogin(): IAction {
             if (needCheck) {
               checkSessionSync()
                 .then(() => {
-                  loginAction();
+                  if (code.value) {
+                   resolve(code.value);
+                  } else {
+                   loginAction();
+                  }
                 })
                 .catch(reject);
             } else {
@@ -62,10 +75,12 @@ function useLogin(): IAction {
     });
   }
 
+  
+
   const getPhoneNumber = (e: any) => {
     if (!e.detail.encryptedData) return Promise.reject({ errMsg: 'login:fail' });
     const info = e.detail;
-    return loginSync(false).then(code => Promise.resolve({
+    return loginSync(true).then(code => Promise.resolve({
       code: code,
       encryptedData: info.encryptedData as string,
       iv: info.iv as string,

@@ -13,7 +13,7 @@ import { typeOf } from '../utils/tool';
 import type { TRouteInfo, TRecord } from '../type';
 
 export type NavigateBackSync = (
-  deltaOrMark?: number | boolean,
+  delta?: number | boolean,
   extraData?: TRecord,
 ) => Promise<TaroGeneral.CallbackResult>;
 export interface INavigateToMiniProgramSyncOptions {
@@ -21,6 +21,7 @@ export interface INavigateToMiniProgramSyncOptions {
   path?: string;
   envVersion?: keyof navigateToMiniProgram.envVersion;
   extraData?: TRecord;
+  shortLink?: string;
 }
 
 export type CommonRouteWithOptionsSync = (
@@ -89,12 +90,15 @@ function useRouter(): Result {
   const navigateToSync: NavigateToSync = (urlOrMark, options) => {
     return new Promise((resolve, reject) => {
       try {
-        const { appId } = options || {};
+        const { appId } = options || {} as INavigateToMiniProgramSyncOptions;
         // if appid exist, use navigateToMiniprogram
         if (appId && urlOrMark) {
           navigateToMiniProgram({
-            ...options,
             appId,
+            path: options?.path,
+            extraData: options?.extraData,
+            envVersion: options?.envVersion,
+            shortLink: options?.shortLink,
             success: resolve,
             fail: reject,
           }).catch(reject);
@@ -108,11 +112,11 @@ function useRouter(): Result {
     });
   };
 
-  const navigateBackSync: NavigateBackSync = (deltaOrMark, extraData) => {
+  const navigateBackSync: NavigateBackSync = (delta, extraData) => {
     return new Promise((resolve, reject) => {
       try {
         // if deltaOrMark is boolean, use navigateBackMiniprogram
-        if (typeOf(deltaOrMark, 'Boolean') && deltaOrMark) {
+        if (typeOf(delta, 'Boolean') && delta) {
           navigateBackMiniProgram({
             ...(extraData ? { extraData } : {}),
             success: resolve,
@@ -120,7 +124,7 @@ function useRouter(): Result {
           }).catch(reject);
         } else {
           navigateBack({
-            ...(deltaOrMark ? { deltaOrMark } : {}),
+            delta: delta as number,
             success: resolve,
             fail: reject,
           }).catch(reject);
