@@ -13,7 +13,6 @@
 
 # production
 /dist
-/docs-dist
 /app-dist
 /packages/app/dist
 /packages/vueuse/lib
