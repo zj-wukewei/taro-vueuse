@@ -7,11 +7,17 @@ import useToast from './useToast';
 import useLoading from './useLoading';
 import useImage from './useImage';
 import useModal from './useModal';
+import useNetworkType from './useNetworkType';
+import useOnline from './useOnline';
+import usePromise from './usePromise';
 import useRouter from './usRouter';
 import useScanCode from './useScanCode';
 import useStorage from './useStorage';
 import useUpdateManager from './useUpdateManager';
+import useRequestSubscribeMessage from './useRequestSubscribeMessage';
 import useLogin from './useLogin';
+import useVisible from './useVisible';
+import useVModel  from './useVModel';
 import useDebounceFn from './useDebounceFn';
 import refDebounce from './refDebounce';
 
@@ -35,6 +41,12 @@ export {
   useToast,
   useLoading,
   useModal,
+  useVisible,
+  useNetworkType,
+  useRequestSubscribeMessage,
+  useOnline,
+  useVModel,
+  usePromise,
   useImage,
   useRouter,
   useStorage,

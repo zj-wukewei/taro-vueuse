@@ -16,7 +16,7 @@ function useUpdateManager({
   onCheckForUpdate,
   onUpdateReady,
   onUpdateFailed,
-}: IUpdateManager): Result {
+}: IUpdateManager = {}): Result {
   const env = getEnv();
   const updateManagerInstance = getUpdateManager();
   const [{ showNoneAsync }] = useToast();
