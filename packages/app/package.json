@@ -41,7 +41,7 @@
     "@tarojs/plugin-html": "3.4.3",
     "@tarojs/plugin-framework-vue3": "3.4.3",
     "vue": "^3.0.0",
-    "@slan-health/taro-vueuse": "0.0.2",
+    "@slan-health/taro-vueuse": "0.0.7",
     "@nutui/nutui-taro": "^3.1.8"
   },
   "devDependencies": {
