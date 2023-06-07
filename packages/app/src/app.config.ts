@@ -10,7 +10,9 @@ export default defineAppConfig({
     'pages/useImage/index',
     'pages/useThrottleFn/index',
     'pages/useStorage/index',
-    'pages/useRequest/index'
+    'pages/useRequest/index',
+    'pages/useDeviceAuth/index',
+    'pages/useRecorderManager/index'
   ],
   window: {
     backgroundTextStyle: 'light',
