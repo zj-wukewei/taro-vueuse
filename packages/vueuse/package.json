@@ -38,12 +38,12 @@
     "querystring": "^0.2.1"
   },
   "devDependencies": {
-    "@tarojs/taro": "3.4.3",
-    "vue": "^3.0.0"
+    "@tarojs/taro": "3.6.8",
+    "vue": "^3.2.24"
   },
   "peerDependencies": {
-    "@tarojs/taro": "3.4.3",
-    "vue": "^3.0.0"
+    "@tarojs/taro": "3.6.8",
+    "vue": "^3.2.24"
   },
   "engines": {
     "node": ">=12.0.0"
