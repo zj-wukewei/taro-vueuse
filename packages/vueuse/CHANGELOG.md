@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.8](https://github.com/zj-wukewei/taro-vueuse/compare/taro-vueuse-v0.0.7...taro-vueuse-v0.0.8) (2023-06-13)
+
+
+### Bug Fixes
+
+* 部分hooks未导出 ([98d6c1b](https://github.com/zj-wukewei/taro-vueuse/commit/98d6c1b5c44a79ce6a776f7036805c25521efef3))
+* 导出优化 ([2c33085](https://github.com/zj-wukewei/taro-vueuse/commit/2c33085b29bf996a42e9ec80a64e7cf07a3fa18a))
+
+
+
+
+
 ## [0.0.7](https://github.com/zj-wukewei/taro-vueuse/compare/taro-vueuse-v0.0.6...taro-vueuse-v0.0.7) (2023-04-06)
 
 
