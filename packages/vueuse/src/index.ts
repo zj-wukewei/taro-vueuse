@@ -20,6 +20,8 @@ import useVisible from './useVisible';
 import useVModel  from './useVModel';
 import useDebounceFn from './useDebounceFn';
 import refDebounce from './refDebounce';
+import useDeviceAuth from './useDeviceAuth';
+import useRecorderManager from './useRecorderManager';
 
 import { setGlobalOptions } from './useRequest/core/config';
 import { clearCache } from './useRequest/core/utils/cache';
@@ -57,5 +59,7 @@ export {
   useLoadMore,
   usePagination,
   useRequest,
-  useRequestProvider
+  useRequestProvider,
+  useDeviceAuth,
+  useRecorderManager
 };
